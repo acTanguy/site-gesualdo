@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    {% if pieces %}
+
+    <h3>Piece</h3>
+    <table class="table table-striped table-bordered table-hover">
+    <tr>
+       
+        <th>Title</th>
+        <th>Source</th>
+
+    </tr>
+    {% for piece in pieces|dictsort:'book_id' %}
+    <tr>
+        
+
+        <td><a href="{% url 'piece' book.recueil_id book.book_position %}">{{ piece.title }}</a></td>
+        <td>{{ piece.mainsource.book_id }}</td>
+    </tr>{% endfor %}
+    </table>
+    {% endif %}

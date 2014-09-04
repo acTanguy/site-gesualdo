@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block link %}
+       
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-8">
+        <form role="form" id="search-form" action="/search" method="get">
+            <div class="form-group">
+                <input class="form-control" type="text" name="q" id="search-input" value="{{ request.GET.q }}"/>
+            </div>
+            
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <select size="1" style="width=100%;" id="list">
+                                <option></option>
+                                <option value="title">Title</option>
+                                <option value="Text">Text</option>
+                                <option value="Publisher">Publisher</option>
+                                <option value="Composer">Compositor</option>
+                                <option value="Poet-lyricist">Poet-lyricist</option>
+                                <option value="Contributor">Contributor</option>
+                                <option value="Source">Source</option>
+                                <option value="Location">Location</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="inputable" name="" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select size="1" style="width=100%;" id="list2">
+                                <option></option>
+                                <option value="title">Title</option>
+                                <option value="Text">Text</option>
+                                <option value="Publisher">Publisher</option>
+                                <option value="Composer">Compositor</option>
+                                <option value="Poet-lyricist">Poet-lyricist</option>
+                                <option value="Contributor">Contributor</option>
+                                <option value="Source">Source</option>
+                                <option value="Location">Location</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="inputable2" name="" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select size="1" style="width=100%;" id="list3">
+                                <option></option>
+                                <option value="title">Title</option>
+                                <option value="Text">Text</option>
+                                <option value="Publisher">Publisher</option>
+                                <option value="Composer">Compositor</option>
+                                <option value="Poet-lyricist">Poet-lyricist</option>
+                                <option value="Contributor">Contributor</option>
+                                <option value="Source">Source</option>
+                                <option value="Location">Location</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="inputable3" name="" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select size="1" style="width=100%;" id="list4">
+                                <option></option>
+                                <option value="title">Title</option>
+                                <option value="Text">Text</option>
+                                <option value="Publisher">Publisher</option>
+                                <option value="Composer">Compositor</option>
+                                <option value="Poet-lyricist">Poet-lyricist</option>
+                                <option value="Contributor">Contributor</option>
+                                <option value="Source">Source</option>
+                                <option value="Location">Location</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="inputable4" name="" value=""/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select size="1" style="width=100%;" id="list5">
+                                <option></option>
+                                <option value="title">Title</option>
+                                <option value="Text">Text</option>
+                                <option value="Publisher">Publisher</option>
+                                <option value="Composer">Compositor</option>
+                                <option value="Poet-lyricist">Poet-lyricist</option>
+                                <option value="Contributor">Contributor</option>
+                                <option value="Source">Source</option>
+                                <option value="Location">Location</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input class="form-control" type="text" id="inputable5" name="" value=""/>
+                        </td>
+                    </tr>
+
+                        
+                </tbody>
+            </table>
+
+        
+        <button type="submit" class="btn">Rechercher</button>
+        </form>
+
+        {% if content.results %}
+            <h3>Results</h3> 
+            {% include "search/search_results.html" %}
+        {% endif %}
+    </div>
+</div>
+<script>
+list.addEventListener('change', function() {
+        var input = document.getElementById('inputable');
+        var list = document.getElementById('list');
+        var listValue = list.value;
+   // On affiche le contenu de l'élément <option> ciblé par la propriété selectedIndex
+      input.name = listValue;
+  }, true);
+</script>
+<script>
+list2.addEventListener('change', function() {
+        var input2 = document.getElementById('inputable2');
+        var list2 = document.getElementById('list2');
+        var listValue2 = list2.value;
+   // On affiche le contenu de l'élément <option> ciblé par la propriété selectedIndex
+      input2.name = listValue2;
+  }, true);
+</script>
+<script>
+list3.addEventListener('change', function() {
+        var input3 = document.getElementById('inputable3');
+        var list3 = document.getElementById('list3');
+        var listValue3 = list3.value;
+   // On affiche le contenu de l'élément <option> ciblé par la propriété selectedIndex
+      input3.name = listValue3;
+  }, true);
+</script>
+<script>
+list4.addEventListener('change', function() {
+        var input4 = document.getElementById('inputable4');
+        var list4 = document.getElementById('list4');
+        var listValue4 = list4.value;
+   // On affiche le contenu de l'élément <option> ciblé par la propriété selectedIndex
+      input4.name = listValue4;
+  }, true);
+</script>
+<script>
+list5.addEventListener('change', function() {
+        var input5 = document.getElementById('inputable5');
+        var list5 = document.getElementById('list5');
+        var listValue5 = list5.value;
+   // On affiche le contenu de l'élément <option> ciblé par la propriété selectedIndex
+      input5.name = listValue5;
+  }, true);
+</script>
+{% endblock %}

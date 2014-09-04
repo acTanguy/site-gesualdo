@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div>
+   <h1>{{ book.title }}</h1>
+   <div>
+        <dl class="dl-horizontal">
+            <dt>Complete Title :</dt>
+            <dd><p>{{ book.complete_title }}</p>
+            <p><em>{{ book.en_transcribed_complete_title }}</em></p></dd>
+            <dt>
+                Catalog identifiers :
+            </dt>
+            <dd>{% for reference in book.catalog_id.all %}
+                <ul>
+                    <li>{{ reference.shelfmark }}</li>
+                </ul>{% endfor %}
+            </dd>
+            <dt>Publication details</dt>
+            <dd>{{ book.place_publication }}, {% for publishers in book.publisher.all %}
+                        {{ publisher.official_name }}, 
+                    {% endfor %}
+                {{ book.date }}
+                </dd>
+                <dt>Location(s)</dd>
+            
+                <dd><ul>{% for bookcopy in othersource %}
+                {% if bookcopy.book_copy_link %}
+                <li>{{ bookcopy.location }} : <a href="{{ bookcopy.book_copy_link}}">[{{ bookcopy.shelfmark }}]</a></li>
+                {% else %}
+                <li>{{ bookcopy.location }} : [{{ bookcopy.shelfmark }}]</li>
+                {% endif %}
+                {% endfor %}</ul></dd>
+
+                {% if othereditions %}
+                
+                <dt>Other edition :</dt>
+                <dd>{% for otheredition in book.other_editions.all|dictsort:'date' %}
+                        <ul>
+                        <li>{{ otheredition.rism }}, {{ otheredition.title }}, <a href="{% url 'book' otheredition.book_id %}">{{ otheredition.date }} </a>{% endfor %}</li>
+                        </ul>
+                </dd>{% endif %}
+
+            </dl>
+
+    </div> 
+</div>
+
+
+
+<div>
+
+    {% if pieces %}
+
+    <h3>Pièces in this book</h3>
+    <table class="table table-striped table-bordered table-hover">
+    <tr>
+        <th>Book position</th>
+        <th>Title</th>
+        <th>Lyricist-Poet</th>
+    </tr>
+    {% for piece in pieces|dictsort:'book_position' %}
+    <tr>
+        
+        <td>{{ piece.book_position }}</td>
+        <td><a href="{% url 'piece' book.book_id piece.book_position %}">{{ piece.title }}</a></td>
+        <td>{{ piece.poet_lyricist.official_name }}</td>
+    </tr>{% endfor %}
+    </table>
+    {% endif %}
+    
+</div>
+{% endblock %}

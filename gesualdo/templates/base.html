@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    {% load staticfiles %}
+        <title>Wikigesu</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/reset.css"/>
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css"/>
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css.map"/>
+            <link rel="stylesheet" href="{{ STATIC_URL }}css/styles.css"/>
+            <script src="{{ STATIC_URL }}js/jquery.js"></script>
+        <link rel="stylesheet" media="screen" type="text/css" title="Design" href="{{ STATIC_URL }}css/design.css" />
+        <link rel="stylesheet" media="screen" type="text/css" href="{% static 'jquery-ui/css/smoothness/jquery-ui-1.10.4.custom.min.css' %}"/>
+        <script type='text/javascript' src="{% static 'jquery.js' %}"></script>
+        <script type='text/javascript' src="{% static 'jquery-ui/js/jquery-ui-1.10.4.custom.min.js' %}"></script>
+
+        <script src:"//code.jquery.com/jquery.js"></script>
+            <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+            <script src="{{ STATIC_URL }}js/slide.js"></script>
+    </head>
+    <body>
+        <div class="page-header">
+    <div class="row">
+    
+      <div class="col-md-6 col-sm-6">
+
+            <!--<img id-="logo-ricercar" src="{{ STATIC_URL }}imagesCss/RICERCAR_NOIR.png" class="img-responsive logo-ricercar" alt="Responsive image">-->
+        <h1><a href="{% url 'home' %}">Gesualdo's Project</a></h1>
+        <h2><small>A collaborative editing of Carlo Gesualdo's works</small></h2>
+      </div>
+      <div class="col-md-6 col-sm-6">
+        <div class"row">
+          <div class="col-md-12 col-sm-12 text-right">
+            <div class="btn-group">
+               
+              {% if user.is_authenticated %}
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  <span class="glyphicon glyphicon-user"></span> {{ user.username }} <span class="caret"></span>
+                </button>
+                  <ul class="dropdown-menu dropdown-menu-right" role="menu">
+                    <li><a href="{% url 'logout-view' %}">Logout</a></li>
+                  </ul>
+              {% else %}<p><span class="glyphicon glyphicon-user"></span>
+              <a href=​"mailto:​?subject=Account request">​Request account​</a>​ | 
+              <a href="{% url 'login-view' %}">Login</a></p>
+              {% endif %}
+            </div>
+          </div>
+          <div class="col-md-12 col-sm-12 text-right" style="margin-top:10px;">
+          
+          <a href="http://www.cnrs.fr/" >
+            <img src="{{ STATIC_URL }}img/CNRS.gif" height="30px" width="30px" style="margin-right:10px;"/>
+          </a>
+          <a href="http://www.univ-tours.fr/" >
+            <img src="{{ STATIC_URL }}img/ufr.gif" height="30px" width="37,5px" style="margin-right:10px;"/>
+          </a>
+          <a href="http://www.culturecommunication.gouv.fr/" >
+            <img src="{{ STATIC_URL }}img/ministere_culture.jpg" height="30px" width="22,5px" style="margin-right:10px;"/>
+          </a>
+          <a href="http://www.regioncentre.fr/" >
+            <img src="{{ STATIC_URL }}img/RC.gif" height="30px" width="52,5px" style="margin-right:10px;"/>
+          </a>
+          <a href="http://msh.univ-tours.fr/" >
+            <img src="{{ STATIC_URL }}img/msh.png" height="30px" width="60px" style="margin-right:10px;"/>
+          </a>
+          <a href="http://www.europe-centre.eu/fr/1/Accueil.html" >
+            <img src="{{ STATIC_URL }}img/Feder.jpg" height="30px" width="30px" />
+          </a>
+          </div>
+          </div>
+          </div>
+        </div>
+
+
+
+
+
+
+      <div id="fond">
+        
+      
+            <nav class="navbar navbar-default" role="navigation">
+              <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+              <li>
+                <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown">The Project<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{% url 'home' %}">Presentation</a></li>
+                  <li><a href="{% url 'participants' %}">Collaborators</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown">Browse<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{% url 'pieces' %}">Title</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{% url 'books' %}">Sources</a></li>
+                  <li class="divider"></li>
+                  <li><a href="{% url 'lyricists' %}">Lyricist-Poet</a></li>
+                </ul>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle navbar-brand" data-toggle="dropdown">On Gesualdo<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="">Chronology</a></li>
+                  <li><a href="">Bibliography</a></li>
+                </ul>
+              </li>
+            </ul>
+            <div class="navbar-right">
+            <ul class="nav navbar-nav">
+              <li>
+                  <form class="navbar-form" role="search" method="GET" action="{% url 'search-view' %}">
+                      <div class="form-group">
+                        <input type="text" class="form-control" name="q" placeholder="search" value="{{ request.GET.q }}">
+                      </div>
+                      <button type="submit" class="btn btn-default">
+                        <span class="glyphicon glyphicon-search"></span>
+                      </button>
+                  </form>
+              </li>
+              <li><a href="{% url 'search-view' %}">Advanced search</a></li>
+            </ul>
+            </div>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>    
+      </div>
+    </div>
+            <div id="corps">
+{% block content %}
+
+{% endblock %}
+            </div>
+            <footer>
+            </footer>
+        </div>
+    </body>
+    <script> $(function() {$(".search").button();
+    $(".search").button("option", "icons", {primary: "ui-icon-search"});
+    });
+    </script>
+
+    {% block scripts %}{% endblock %}
+</html>
