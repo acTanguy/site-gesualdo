@@ -14,10 +14,10 @@
                         <th>Lyricist-Poet</th>
                     </tr>
 
-                    {% for piece in pieces|dictsort:'titre' %}
+                    {% for piece in pieces|dictsort:'title' %}
                     <tr>
-                        <td><a href="{% url 'piece' piece.book_id.book_id piece.book_position %}">{{ piece.titre }}</a></td>
-                        <td><a href="/browse/{{ piece.book_id.book_id }}">{{ piece.book_id.title }}, {{ piece.book_id.date }}</a></td>
+                        <td><a href="{% url 'piece' piece.book_id.book_id piece.book_position %}">{{ piece.title }}</a></td>
+                        <td><a href="/browse/{{ piece.book_id.book_id }}">{{ piece.book_id.title }}</a></td>
                         <td>{{ piece.poet_lyricist.official_name }}
                     </tr>
                     {% endfor %}

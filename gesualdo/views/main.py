@@ -40,7 +40,7 @@ def piece(request, book, place):
         if request.user.is_authenticated():
             u = request.user
             if u.has_perm('gesualdo.validate_message'):
-                comments = Message.objects.filter(piece=piece, archive=False).order_by('-timestamp')
+                comments = Message.objects.filter(piece=piece, archived=False).order_by('-timestamp')
             else:
                 comments = Message.objects.filter(piece=piece, validated=True, archived=False).order_by('-timestamp') | Message.objects.filter(piece=piece, validated=False, ip=ip).order_by('-timestamp')
         else:

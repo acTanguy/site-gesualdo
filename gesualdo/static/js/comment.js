@@ -120,7 +120,7 @@ $('#comment_measure').keyup(function() {$('#comment_measure').val(this.value.mat
                                 formArchive.appendTo(validations);
                                 
                                 var formInvalide = $('<form class="deletCom" method="POST"></form>');
-                                formInvalide.attr('action', "{% url 'messageprocessing:supprimerComment' %}");
+                                formInvalide.attr('action', "{% url 'messageprocessing:refuseComment' %}");
                                 formInvalide.html("{% csrf_token %}");
                                 var invalide = $('<input id="suppr' + data + '" type="image" class="commit_message_button" title="Delete" alt="X" value="submit"/>');
                                 invalide.attr('src', '{% static "imagesCss/refuser.png" %}');
@@ -269,5 +269,5 @@ $('#comment_measure').keyup(function() {$('#comment_measure').val(this.value.mat
         function triggerComment()
         {
             $("#buttonCom").hide();
-            $("#ajoutCom").fadeIn();
+            $("#addCom").fadeIn();
         }

@@ -30,6 +30,6 @@ class Message(models.Model):
         )
     def __unicode__(self):
         if self.user_post == None:
-            return "Internaute {0}...".format(self.message[:25])
+            return "Visitor {0}...".format(self.message[:25])
         else:
             return "{0} {1}...".format(self.user_post.person.nickname, self.message[:25])
