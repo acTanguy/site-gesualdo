@@ -14,14 +14,11 @@
             </dt>
             <dd>{% for reference in book.catalog_id.all %}
                 <ul>
-                    <li>{{ reference.shelfmark }}</li>
+                    <li>{{ reference }}</li>
                 </ul>{% endfor %}
             </dd>
             <dt>Publication details</dt>
-            <dd>{{ book.place_publication }}, {% for publishers in book.publisher.all %}
-                        {{ publisher.official_name }}, 
-                    {% endfor %}
-                {{ book.date }}
+            <dd> {{ book.place_publication.standardized_city }}, {{ book.publisher.name }}, {{ book.date }}
                 </dd>
                 <dt>Location(s)</dd>
             

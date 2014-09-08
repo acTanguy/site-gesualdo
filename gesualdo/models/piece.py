@@ -32,7 +32,12 @@ class Piece(models.Model):
     notes = models.TextField(blank=True, null=True)
 
     def save(self, **kwargs):
-        item_str = "%s/%s" % (self.mainsource.book_id.book_id, self.book_position)
+        if self.mainsource:
+            item_str = "%s/%s" % (self.mainsource)
+        elif self.book_id:
+            item_str = "%s/%s" % (self.book_id.book_id, self.book_position)
+        else:
+            item_str = "%s/%s" % (self.title)
         unique_itemify(self, item_str)
         super(Piece, self).save()
 
@@ -44,7 +49,8 @@ class Piece(models.Model):
         return self.voices_name.split(',')
 
     def maincopy(self):
-        return self.mainsource.book_id
+        if self.mainsource:
+            return self.mainsource
 
     
 
